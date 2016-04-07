@@ -2,11 +2,12 @@
 import {setEntries, next, vote, INITIAL_STATE} from "./core"
 
 //function takes an action and a sttate and invokes the core function that matches the action
-export default function reducer(state, action){
+export default function reducer(state = INITIAL_STATE, action){
   //work out what function to call, and call it
-                                                console.log(action)
+                                                console.log(state, 'action')
   switch(action.type) {
     case 'SET_ENTRIES':
+    console.log(state, 'switch statement')
       return setEntries(state, action.entries)
       break;
     case 'NEXT':

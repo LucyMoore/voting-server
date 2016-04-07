@@ -1,14 +1,24 @@
 import {List, Map} from 'immutable';
-
+//implement initial state
+export const INITIAL_STATE = Map();
 
 //set an entries key in the state Map, and set the value as the given List of entries
 //input entries can be regular JavaScript but must be list immutable by the time it reaches state tree
 export function setEntries(state, entries) {
+  console.log(state, 'state')
   return state.set('entries', List(entries));
 }
 
-//implement initial state
-export const INITIAL_STATE = Map();
+function getWinners(vote) {
+  if (!vote) return [];
+  const [a, b] = vote.get('pair');
+  const aVotes = vote.getIn(['tally', a], 0);
+  const bVotes = vote.getIn(['tally', b], 0);
+  if      (aVotes > bVotes)  return [a];
+  else if (aVotes < bVotes)  return [b];
+  else                       return [a, b];
+}
+
 
 //merge an update into the old state, where the first two entries are put in one List, and the rest in the new version of entries:
 //function named next that takes current state as an argument
