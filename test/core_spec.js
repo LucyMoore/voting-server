@@ -32,6 +32,10 @@ describe('next', () => {
         }),
         entries: List.of('Sunshine')
       }));
+      const nextState = next(state);
+      expect(nextState).to.equal(Map({
+        winner: 'Trainspotting'
+      }))
     });
 
   });
